@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517238621167",
+    "project_id": "authentication-dfef2",
+    "storage_bucket": "authentication-dfef2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517238621167:android:ac148a7a694a685ed9ac1a",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.SelectMe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517238621167-e3begekprpfagk1qark0r58rf2sqrk1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpsEGqGUaFDfiIk-02Ucm7-C_KbVrE5Z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517238621167-e3begekprpfagk1qark0r58rf2sqrk1d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
