@@ -280,6 +280,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: FirebaseAuthManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7423859824620554335, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859824620554335, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859824620554335, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7423859824699222791, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -291,6 +303,42 @@ PrefabInstance:
     - target: {fileID: 7423859824699222791, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859824745473854, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859824745473854, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859824745473854, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859824807609111, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859824807609111, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859824807609111, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859825058411801, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859825058411801, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423859825058411801, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f63f5758dd0022a47973c118195daa6f, type: 3}
@@ -835,26 +883,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1332090587}
-    - target: {fileID: 3946860044571067875, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Login
-      objectReference: {fileID: 0}
-    - target: {fileID: 3946860044571067875, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FirebaseAuthManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 3946860045504957841, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 197328655}
-    - target: {fileID: 3946860045504957841, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenRegistrationPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3946860045504957841, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 3946860046047346945, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -942,10 +974,6 @@ PrefabInstance:
     - target: {fileID: 3946860046047346946, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
       propertyPath: m_Name
       value: Login
-      objectReference: {fileID: 0}
-    - target: {fileID: 3946860046047346946, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0925f57424e7eea4c93f9fcc462dcbe3, type: 3}
