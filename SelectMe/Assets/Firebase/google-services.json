@@ -1,7 +1,7 @@
 {
   "project_info": {
-    "firebase_url": "null",
     "project_number": "517238621167",
+    "firebase_url": "https://authentication-dfef2-default-rtdb.firebaseio.com",
     "project_id": "authentication-dfef2",
     "storage_bucket": "authentication-dfef2.appspot.com"
   },

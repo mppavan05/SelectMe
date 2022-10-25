@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
 
+
+
 public class FirebaseAuthManager : MonoBehaviour
 {
     
@@ -13,6 +15,7 @@ public class FirebaseAuthManager : MonoBehaviour
     public DependencyStatus dependencyStatus;
     public FirebaseAuth auth;
     public FirebaseUser user;
+    
 
     // Login Variables
     [Space]
@@ -35,6 +38,7 @@ public class FirebaseAuthManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
         else
         {
