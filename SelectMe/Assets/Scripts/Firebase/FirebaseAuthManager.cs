@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Firebase;
@@ -6,6 +7,7 @@ using Firebase.Auth;
 
 public class FirebaseAuthManager : MonoBehaviour
 {
+    
     // Firebase variable
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -25,23 +27,45 @@ public class FirebaseAuthManager : MonoBehaviour
     public InputField emailRegisterField;
     public InputField passwordRegisterField;
     public InputField confirmPasswordRegisterField;
+    
+    public static FirebaseAuthManager Instance { get; private set;}
 
     private void Awake()
     {
-        // Check that all of the necessary dependencies for firebase are present on the system
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+        if (Instance == null)
         {
-            dependencyStatus = task.Result;
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-            if (dependencyStatus == DependencyStatus.Available)
-            {
-                InitializeFirebase();
-            }
-            else
-            {
-                Debug.LogError("Could not resolve all firebase dependencies: " + dependencyStatus);
-            }
-        });
+
+    private void Start()
+    {
+        StartCoroutine(CheckAndFixDependenciesAsync());
+    }
+
+    private IEnumerator CheckAndFixDependenciesAsync()
+    {
+        var dependencyTask = FirebaseApp.CheckAndFixDependenciesAsync();
+
+        yield return new WaitUntil(() => dependencyTask.IsCompleted);
+        
+        dependencyStatus = dependencyTask.Result;
+
+        if (dependencyStatus == DependencyStatus.Available)
+        {
+            InitializeFirebase();
+            yield return new WaitForEndOfFrame();
+            StartCoroutine(CheckForAutoLogin());
+        }
+        else
+        {
+            Debug.LogError("Could not resolve all firebase dependencies: " + dependencyStatus);
+        }
     }
 
     void InitializeFirebase()
@@ -51,6 +75,36 @@ public class FirebaseAuthManager : MonoBehaviour
 
         auth.StateChanged += AuthStateChanged;
         AuthStateChanged(this, null);
+    }
+
+    // Checking for Auto login
+    private IEnumerator CheckForAutoLogin()
+    {
+        if (user != null)
+        {
+            var reloadUserTask = user.ReloadAsync();
+
+            yield return new WaitUntil(() => reloadUserTask.IsCompleted);
+            
+            AutoLogin();
+        }
+        else
+        {
+            UIManager.Instance.OpenLoginPanel();
+        }
+    }
+
+    private void AutoLogin()
+    {
+        if (user != null)
+        {
+            References.userName = user.DisplayName;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        }
+        else
+        {
+            UIManager.Instance.OpenLoginPanel();
+        }
     }
 
     // Track state changes of the auth object.
@@ -63,6 +117,8 @@ public class FirebaseAuthManager : MonoBehaviour
             if (!signedIn && user != null)
             {
                 Debug.Log("Signed out " + user.UserId);
+                UIManager.Instance.OpenLoginPanel();
+                ClearLoginField();
             }
 
             user = auth.CurrentUser;
@@ -71,6 +127,20 @@ public class FirebaseAuthManager : MonoBehaviour
             {
                 Debug.Log("Signed in " + user.UserId);
             }
+        }
+    }
+
+    private void ClearLoginField()
+    {
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+    }
+
+    public void LogOut()
+    {
+        if (auth != null && user != null)
+        {
+            auth.SignOut();
         }
     }
 
