@@ -171,9 +171,9 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(UpdateUsernameAuth(usernameField.text));
         StartCoroutine(UpdateUsernameDatabase(usernameField.text));
 
-        StartCoroutine(UpdateXp(int.Parse(middleTV.text)));
-        StartCoroutine(UpdateKills(int.Parse(rightTv.text)));
-        StartCoroutine(UpdateDeaths(int.Parse(leftTv.text)));
+        StartCoroutine(UpdateXp(StoredValue.MiddleTv));
+        StartCoroutine(UpdateKills(StoredValue.RightTV));
+        StartCoroutine(UpdateDeaths(StoredValue.LeftTv));
     }
     //Function for the scoreboard button
     public void ScoreboardButton()

@@ -99,6 +99,7 @@ public class Target : MonoBehaviour
     mainCamera.fieldOfView =
         Mathf.Lerp(mainCamera.fieldOfView, normal, Time.deltaTime * 100);
     yield return new WaitForSeconds(1f);
+    FirebaseManager.Instance.SaveDataButton();
     slider.gameObject.SetActive(false);
     closeButton.gameObject.SetActive(false);
     
