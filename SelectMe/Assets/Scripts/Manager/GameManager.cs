@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowMessage()
     {
-        messageText.text = string.Format("Welcome, {0} In Your game scene", References.userName);
+        messageText.text = string.Format("Welcome, {0} \n In Your game scene", References.userName);
 
         yield return new WaitForSeconds(3f);
 
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     
     public void LogOut()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LoginScene");
-        FirebaseAuthManager.Instance.LogOut();
+        //FirebaseManager.Instance.SaveDataButton();
+        FirebaseManager.Instance.SignOutButton();
     }
 }

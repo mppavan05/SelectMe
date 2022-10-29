@@ -1,39 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
+    public static UIManager instance;
 
-    [SerializeField]
-    private GameObject loginPanel;
-
-    [SerializeField]
-    private GameObject registrationPanel;
+    //Screen object variables
+    public GameObject loginUI;
+    public GameObject registerUI;
+    public GameObject userDataUI;
+    public GameObject scoreboardUI;
 
     private void Awake()
     {
-        CreateInstance();
-    }
-
-    private void CreateInstance()
-    {
-        if(Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Debug.Log("Instance already exists, destroying object!");
+            Destroy(this);
         }
     }
 
-    public void OpenLoginPanel()
+    //Functions to change the login screen UI
+
+    public void ClearScreen() //Turn off all screens
     {
-        loginPanel.SetActive(true);
-        registrationPanel.SetActive(false);
+        loginUI.SetActive(false);
+        registerUI.SetActive(false);
+        userDataUI.SetActive(false);
+        scoreboardUI.SetActive(false);
     }
 
-    public void OpenRegistrationPanel()
+    public void LoginScreen() //Back button
     {
-        registrationPanel.SetActive(true);
-        loginPanel.SetActive(false);
+        ClearScreen();
+        loginUI.SetActive(true);
+    }
+    public void RegisterScreen() // Regester button
+    {
+        ClearScreen();
+        registerUI.SetActive(true);
+    }
+
+    public void UserDataScreen() //Logged in
+    {
+        ClearScreen();
+        userDataUI.SetActive(true);
+    }
+
+    public void ScoreboardScreen() //Scoreboard button
+    {
+        ClearScreen();
+        scoreboardUI.SetActive(true);
     }
 }

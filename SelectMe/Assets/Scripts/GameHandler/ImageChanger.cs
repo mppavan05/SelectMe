@@ -8,7 +8,9 @@ public class ImageChanger : MonoBehaviour
     [SerializeField] private Material[] displayMaterials;
 
     private Renderer _renderer;
-    private int _num;
+
+    public int number;
+    
 
     private void Start()
     {
@@ -20,14 +22,10 @@ public class ImageChanger : MonoBehaviour
     {
         ChangeImage();
     }
-
-    public void GetNumber(int index)
-    {
-        _num = index;
-    }
+    
 
     private void ChangeImage()
     {
-        _renderer.sharedMaterial = displayMaterials[_num];
+        _renderer.sharedMaterial = displayMaterials[number];
     }
 }
