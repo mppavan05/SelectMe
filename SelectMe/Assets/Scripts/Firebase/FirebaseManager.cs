@@ -37,10 +37,9 @@ public class FirebaseManager : MonoBehaviour
     //User Data variables
     [Header("UserData")]
     public TMP_InputField usernameField;
-    public TMP_InputField MiddleTV; // create static variable to store the number
-    // update it in the input data field.
-    public TMP_InputField killsField;
-    public TMP_InputField deathsField;
+    public TMP_InputField middleTV;
+    public TMP_InputField rightTv;
+    public TMP_InputField leftTv;
     public GameObject scoreElement;
     public Transform scoreboardContent;
 
@@ -172,9 +171,9 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(UpdateUsernameAuth(usernameField.text));
         StartCoroutine(UpdateUsernameDatabase(usernameField.text));
 
-        StartCoroutine(UpdateXp(int.Parse(MiddleTV.text)));
-        StartCoroutine(UpdateKills(int.Parse(killsField.text)));
-        StartCoroutine(UpdateDeaths(int.Parse(deathsField.text)));
+        StartCoroutine(UpdateXp(int.Parse(middleTV.text)));
+        StartCoroutine(UpdateKills(int.Parse(rightTv.text)));
+        StartCoroutine(UpdateDeaths(int.Parse(leftTv.text)));
     }
     //Function for the scoreboard button
     public void ScoreboardButton()
@@ -421,18 +420,18 @@ public class FirebaseManager : MonoBehaviour
         else if (DBTask.Result.Value == null)
         {
             //No data exists yet
-            MiddleTV.text = "0";
-            killsField.text = "0";
-            deathsField.text = "0";
+            middleTV.text = "0";
+            rightTv.text = "0";
+            leftTv.text = "0";
         }
         else
         {
             //Data has been retrieved
             DataSnapshot snapshot = DBTask.Result;
 
-            MiddleTV.text = snapshot.Child("xp").Value.ToString();
-            killsField.text = snapshot.Child("kills").Value.ToString();
-            deathsField.text = snapshot.Child("deaths").Value.ToString();
+            middleTV.text = snapshot.Child("xp").Value.ToString();
+            rightTv.text = snapshot.Child("kills").Value.ToString();
+            leftTv.text = snapshot.Child("deaths").Value.ToString();
         }
     }
 

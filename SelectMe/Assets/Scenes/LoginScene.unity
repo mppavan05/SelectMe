@@ -1160,9 +1160,9 @@ MonoBehaviour:
   passwordRegisterVerifyField: {fileID: 559760170}
   warningRegisterText: {fileID: 559760168}
   usernameField: {fileID: 1621378738}
-  xpField: {fileID: 1621378737}
-  killsField: {fileID: 1621378736}
-  deathsField: {fileID: 1621378735}
+  middleTV: {fileID: 1621378737}
+  rightTv: {fileID: 1621378736}
+  leftTv: {fileID: 1621378735}
   scoreElement: {fileID: 1879445940651037232, guid: 829cd42e5df49e047a3a4afb1ba6859d,
     type: 3}
   scoreboardContent: {fileID: 1845425585}

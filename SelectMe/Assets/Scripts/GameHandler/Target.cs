@@ -43,7 +43,6 @@ public class Target : MonoBehaviour
       var selection = hit.transform;
       targetObject = selection;
       var selectionRender = selection.GetComponent<ImageChanger>();
-      selectionRender.number = References.Value;
       if (selectionRender != null)
       {
         //Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.5f);
@@ -63,7 +62,22 @@ public class Target : MonoBehaviour
 
   public void GetNumber(int index)
   {
-    References.Value = index;
+    if (targetObject.CompareTag("Middle"))
+    {
+      print("Middle");
+      StoredValue.MiddleTv = index;
+    }
+    else if (targetObject.CompareTag("Left"))
+    {
+      print("Left");
+      StoredValue.LeftTv = index;
+    }
+    else if (targetObject.CompareTag("Right"))
+    {
+      print("Right");
+      StoredValue.RightTV = index;
+    }
+    
   }
   
 
