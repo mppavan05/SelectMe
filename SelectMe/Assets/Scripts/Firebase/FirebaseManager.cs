@@ -171,9 +171,9 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(UpdateUsernameAuth(usernameField.text));
         StartCoroutine(UpdateUsernameDatabase(usernameField.text));
 
-        StartCoroutine(UpdateXp(StoredValue.MiddleTv));
-        StartCoroutine(UpdateKills(StoredValue.RightTV));
-        StartCoroutine(UpdateDeaths(StoredValue.LeftTv));
+        StartCoroutine(UpdateMiddleTvData(StoredValue.MiddleTv));
+        StartCoroutine(UpdateRightTvData(StoredValue.RightTV));
+        StartCoroutine(UpdateLeftTvData(StoredValue.LeftTv));
     }
     //Function for the scoreboard button
     public void ScoreboardButton()
@@ -355,10 +355,10 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateXp(int _xp)
+    private IEnumerator UpdateMiddleTvData(int middleData)
     {
         //Set the currently logged in user xp
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("xp").SetValueAsync(_xp);
+        var DBTask = DBreference.Child("users").Child(User.UserId).Child("middleTv").SetValueAsync(middleData);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
@@ -372,10 +372,10 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateKills(int _kills)
+    private IEnumerator UpdateRightTvData(int rightData)
     {
         //Set the currently logged in user kills
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("kills").SetValueAsync(_kills);
+        var DBTask = DBreference.Child("users").Child(User.UserId).Child("rightTv").SetValueAsync(rightData);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
@@ -389,10 +389,10 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateDeaths(int _deaths)
+    private IEnumerator UpdateLeftTvData(int leftData)
     {
         //Set the currently logged in user deaths
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("deaths").SetValueAsync(_deaths);
+        var DBTask = DBreference.Child("users").Child(User.UserId).Child("leftTv").SetValueAsync(leftData);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
@@ -429,16 +429,20 @@ public class FirebaseManager : MonoBehaviour
             //Data has been retrieved
             DataSnapshot snapshot = DBTask.Result;
 
-            middleTV.text = snapshot.Child("xp").Value.ToString();
-            rightTv.text = snapshot.Child("kills").Value.ToString();
-            leftTv.text = snapshot.Child("deaths").Value.ToString();
+            middleTV.text = snapshot.Child("middleTv").Value.ToString();
+            rightTv.text = snapshot.Child("rightTv").Value.ToString();
+            leftTv.text = snapshot.Child("leftTv").Value.ToString();
+
+            StoredValue.MiddleTv = int.Parse(middleTV.text);
+            StoredValue.RightTV = int.Parse(rightTv.text);
+            StoredValue.LeftTv = int.Parse(leftTv.text);
         }
     }
 
     private IEnumerator LoadScoreboardData()
     {
         //Get all the users data ordered by kills amount
-        var DBTask = DBreference.Child("users").OrderByChild("kills").GetValueAsync();
+        var DBTask = DBreference.Child("users").OrderByChild("rightTv").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
@@ -461,13 +465,13 @@ public class FirebaseManager : MonoBehaviour
             foreach (DataSnapshot childSnapshot in snapshot.Children.Reverse<DataSnapshot>())
             {
                 string username = childSnapshot.Child("username").Value.ToString();
-                int kills = int.Parse(childSnapshot.Child("kills").Value.ToString());
-                int deaths = int.Parse(childSnapshot.Child("deaths").Value.ToString());
-                int xp = int.Parse(childSnapshot.Child("xp").Value.ToString());
+                int rightTv = int.Parse(childSnapshot.Child("rightTv").Value.ToString());
+                int leftTv = int.Parse(childSnapshot.Child("leftTv").Value.ToString());
+                int middleTv = int.Parse(childSnapshot.Child("middleTv").Value.ToString());
 
                 //Instantiate new scoreboard elements
                 GameObject scoreboardElement = Instantiate(scoreElement, scoreboardContent);
-                scoreboardElement.GetComponent<ScoreElement>().NewScoreElement(username, kills, deaths, xp);
+                scoreboardElement.GetComponent<ScoreElement>().NewScoreElement(username, rightTv, leftTv, middleTv);
             }
 
             //Go to scoareboard screen
