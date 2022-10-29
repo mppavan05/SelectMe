@@ -175,12 +175,7 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(UpdateRightTvData(StoredValue.RightTV));
         StartCoroutine(UpdateLeftTvData(StoredValue.LeftTv));
     }
-    //Function for the scoreboard button
-    public void ScoreboardButton()
-    {        
-        StartCoroutine(LoadScoreboardData());
-    }
-
+    
     private IEnumerator Login(string _email, string _password)
     {
         //Call the Firebase auth signin function passing the email and password
@@ -438,44 +433,5 @@ public class FirebaseManager : MonoBehaviour
             StoredValue.LeftTv = int.Parse(leftTv.text);
         }
     }
-
-    private IEnumerator LoadScoreboardData()
-    {
-        //Get all the users data ordered by kills amount
-        var DBTask = DBreference.Child("users").OrderByChild("rightTv").GetValueAsync();
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            //Data has been retrieved
-            DataSnapshot snapshot = DBTask.Result;
-
-            //Destroy any existing scoreboard elements
-            foreach (Transform child in scoreboardContent.transform)
-            {
-                Destroy(child.gameObject);
-            }
-
-            //Loop through every users UID
-            foreach (DataSnapshot childSnapshot in snapshot.Children.Reverse<DataSnapshot>())
-            {
-                string username = childSnapshot.Child("username").Value.ToString();
-                int rightTv = int.Parse(childSnapshot.Child("rightTv").Value.ToString());
-                int leftTv = int.Parse(childSnapshot.Child("leftTv").Value.ToString());
-                int middleTv = int.Parse(childSnapshot.Child("middleTv").Value.ToString());
-
-                //Instantiate new scoreboard elements
-                GameObject scoreboardElement = Instantiate(scoreElement, scoreboardContent);
-                scoreboardElement.GetComponent<ScoreElement>().NewScoreElement(username, rightTv, leftTv, middleTv);
-            }
-
-            //Go to scoareboard screen
-            UIManager.instance.ScoreboardScreen();
-        }
-    }
+    
 }
