@@ -40,8 +40,7 @@ public class FirebaseManager : MonoBehaviour
     public TMP_InputField middleTV;
     public TMP_InputField rightTv;
     public TMP_InputField leftTv;
-    public GameObject scoreElement;
-    public Transform scoreboardContent;
+    
 
     private void Awake()
     {
